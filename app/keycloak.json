@@ -1,0 +1,9 @@
+{
+  "realm": "Entreprise1",
+  "auth-server-url": "http://frparagora-sec1:8080/auth",
+  "realm-public-key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmYqiEOA+rcSgvM79jg730IIq1aXSL2iQYjy26C1gwyqONPgLM4pNt8pfjFEtwSItQSEgUrrs5YqrG426owAwbpQ9tweZEnIPJdJ1JSo7ZVZrkrzzTReAf2Anfl7aH5yKartVwl7AgDcMDlfEVKBAzR5Pli5xxjUAPDCM6UQFaIm6Pqa8VUpVyfBlsuCR9SpQ0ccFbqy30p9B6K7YwmybXgtkXp+KYJBUh+bxDIDQ+O/SPBSDXEpvRnABDmvcQNXEkPDyjogz3EddPKMx2tlgLwl69xkDzexAUY1BpSTK1SmKwzRGtQzbOltD+wsrLwBMW8ykGEoyujl2Wo1osSShhwIDAQAB",
+  "ssl-required": "external",
+  "resource": "portailAggora",
+  "public-client": true,
+  "use-resource-role-mappings": true
+}

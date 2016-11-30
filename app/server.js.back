@@ -1,0 +1,68 @@
+'use strict';
+
+const express = require('express');
+const Keycloak = require('keycloak-connect');
+const session = require('express-session');
+
+// App
+const app = express();
+//app.get('/', function (req, res) {
+  //res.render('server');
+//});
+// Create a session-store to be used by both the express-session
+// middleware and the keycloak middleware.
+
+var memoryStore = new session.MemoryStore();
+
+app.use(session({
+  secret: 'mySecret',
+  resave: false,
+  saveUninitialized: true,
+  store: memoryStore
+}));
+
+// Provide the session store to the Keycloak so that sessions
+// can be invalidated from the Keycloak console callback.
+//
+// Additional configuration is read from keycloak.json file
+// installed from the Keycloak web console.
+
+var keycloak = new Keycloak({
+  store: memoryStore
+});
+// Install the Keycloak middleware.
+//
+// Specifies that the user-accessible application URL to
+// logout should be mounted at /logout
+//
+// Specifies that Keycloak console callbacks should target the
+// root URL.  Various permutations, such as /k_logout will ultimately
+// be appended to the admin URL.
+
+app.use(keycloak.middleware({
+  logout: '/logout',
+  admin: '/'
+}));
+
+app.get('/portailAggora', keycloak.protect(), function (req, res) {
+  res.render('server', {
+    result: JSON.stringify(JSON.parse(req.session['keycloak-token']), null, 4),
+    event: '1. Authentication\n2. Login'
+  });
+});
+
+// App
+//const app = express();
+//app.get('/hello', function (req, res) {
+  //res.send('Hello world\n');
+//});
+var server = app.listen(8080, function () {
+  var host = server.address().address;
+  var port = server.address().port;
+  console.log('Example app listening at http://%s:%s', host, port);
+});
+
+
+app.listen(PORT);
+console.log('Running on http://localhost:' + PORT);
+

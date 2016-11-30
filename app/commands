@@ -1,0 +1,4 @@
+docker build -t syo/node-web-app .
+docker run -p 49160:8080 -d syo/node-web-app
+http://frparagora-apm1:8080/apiman-gateway/Terrena/helloWorldTerrena/1.0?apikey=96451d41-dd39-4784-83f6-2dc69b6a795c
+http://frparagora-apm1:49160/hello
