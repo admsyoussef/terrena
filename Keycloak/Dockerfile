@@ -1,2 +1,0 @@
-FROM jboss/keycloak-postgres
-
